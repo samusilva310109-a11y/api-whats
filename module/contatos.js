@@ -568,3 +568,7 @@ export const contatos = { "whats-users" :
                             }
                           ]
                         }
+
+module.exports = {
+  contatos
+}
