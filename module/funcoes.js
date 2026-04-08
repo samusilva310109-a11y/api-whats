@@ -73,7 +73,20 @@ function getDadosContatos(num){
         return listaMeusContatos
 }
 
+function getListaUserMessages(num) {
+    let listaMensagens = []
+    let numero = String(num)
 
+    listaContatos["whats-users"].forEach((user) => {
+        if (numero == user.number) {
+            user.contacts.forEach((contato) => {
+                listaMensagens.push(
+                    {"nome_contato":contato.name,"menssagens":contato.messages}
+                )
+            })
+        }
+    })
+}
 
 
 
