@@ -5,24 +5,3 @@
  * Versão: 1.0
  ******************************************************************************************/
 
-const contatos = require("./contatos")
-const listaContatos = contatos.contatos
-
-function getListaUsuarios(){
-    let listaUsers = {
-        "usuarios":[
-        ]
-    }
-
-    listaContatos["whats-users"].forEach((users) => {
-        listaUsers.usuarios.push(users)
-    })
-
-    if (listaUsers.usuarios.length == 0)
-        return false
-    else
-        return listaUsers
-}
-
-
-
