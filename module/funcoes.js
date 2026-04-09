@@ -86,7 +86,13 @@ function getListaUserMessages(num) {
             })
         }
     })
+
+    return listaMensagens
 }
+
+let lista = getListaUserMessages("11987876567")
+console.log(lista);
+
 
 
 
