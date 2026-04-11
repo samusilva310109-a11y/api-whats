@@ -8,9 +8,9 @@
 const contatos = require("./contatos")
 const listaContatos = contatos.contatos
 
-function getListaUsuarios(){
+function getListaUsuarios() {
     let listaUsers = {
-        "usuarios":[
+        "usuarios": [
         ]
     }
 
@@ -24,7 +24,7 @@ function getListaUsuarios(){
         return listaUsers
 }
 
-function getDadosUsuario(num){
+function getDadosUsuario(num) {
     let numero = String(num)
 
     let dadosUser = {
@@ -32,26 +32,26 @@ function getDadosUsuario(num){
     }
 
     listaContatos["whats-users"].forEach((user) => {
-        if(numero == user.number){
+        if (numero == user.number) {
             dadosUser = {
-                "nome":user.account,
-                "nick":user.nickname,
-                "foto":user["profile-image"],
-                "numero":user.number,
-                "cor_de_fundo":user.background,
-                "criacao":user["created-since"].start,
-                "encerramento":user["created-since"].end
+                "nome": user.account,
+                "nick": user.nickname,
+                "foto": user["profile-image"],
+                "numero": user.number,
+                "cor_de_fundo": user.background,
+                "criacao": user["created-since"].start,
+                "encerramento": user["created-since"].end
             }
-        }  
+        }
     })
 
-    if(Object.keys(dadosUser).length == 0)
+    if (Object.keys(dadosUser).length == 0)
         return false
     else
         return dadosUser
 }
 
-function getDadosContatos(num){
+function getDadosContatos(num) {
     let numero = String(num)
 
     let listaMeusContatos = []
@@ -60,14 +60,14 @@ function getDadosContatos(num){
         if (numero == user.number) {
             user.contacts.forEach((contacts) => [
                 listaMeusContatos.push(
-                    {"nome":contacts.name,"foto_perfil":contacts.image,"descricao":contacts.description}
+                    { "nome": contacts.name, "foto_perfil": contacts.image, "descricao": contacts.description }
                 )
             ])
-           
-        } 
+
+        }
     })
 
-    if(listaMeusContatos.length == 0)
+    if (listaMeusContatos.length == 0)
         return false
     else
         return listaMeusContatos
@@ -81,18 +81,44 @@ function getListaUserMessages(num) {
         if (numero == user.number) {
             user.contacts.forEach((contato) => {
                 listaMensagens.push(
-                    {"nome_contato":contato.name,"menssagens":contato.messages}
+                    { "nome_contato": contato.name, "menssagens": contato.messages }
                 )
             })
         }
     })
 
-    return listaMensagens
+    if (listaMensagens.length == 0)
+        return false
+    else
+        return listaMensagens
 }
 
-let lista = getListaUserMessages("11987876567")
-console.log(lista);
+function getDadosConversa(numUser, contactName) {
+    let numUsuario = String(numUser)
+    let nomeContato = String(contactName)
 
+    let dadosConversa = {}
 
+    listaContatos["whats-users"].forEach((user) => {
+        if (numUsuario == user.number) {
+            user.contacts.forEach((contact) => {
+                if (nomeContato == contact.name) {
+
+                    dadosConversa = {
+                        "usuario": user.account,
+                        "nome_contato": contact.name,
+                        "conversas": contact.messages
+                    }
+
+                }
+            })
+        }
+    })
+
+    if (Object.keys(dadosConversa).length == 0)
+        return false
+    else
+        return dadosConversa
+}
 
 
