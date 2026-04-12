@@ -121,4 +121,31 @@ function getDadosConversa(numUser, contactName) {
         return dadosConversa
 }
 
+function filtrarConversas(numUser, nameContact, keyWord) {
+    let numeroUser = String(numUser)
+    let nomeContact = String(nameContact)
+    let palavraChave = String(keyWord).toUpperCase()
 
+    let listaConvesas = []
+
+    listaContatos["whats-users"].forEach((user) => {
+        if (user.number == numeroUser) {
+            user.contacts.forEach((contacts) => {
+                if (contacts.name == nomeContact) {
+                    contacts.messages.forEach((messages) => {
+                        if (messages.content.toUpperCase().substring().includes(palavraChave)) {
+                            listaConvesas.push(
+                                { "quem_enviou": messages.sender, "conteudo": messages.content, "hora_envio": messages.time }
+                            )
+                        }
+                    })
+                }
+            })
+        }
+    })
+
+    if (listaConvesas.length == 0)
+        return false
+    else
+        return listaConvesas
+}
