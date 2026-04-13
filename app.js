@@ -150,10 +150,10 @@ app.get("/v1/whatsapp/doc",(resquest, response) => {
             {"rota4":"/v1/whatsapp/usuario/menssagens/:numUser",
                 "description":"Retorna todas as mensagens de um usuário com os seus contatos pesquisando pelo número de telefone do usário"
             },
-            {"rota5":"/v1/whatsapp/dados/conversa/:numeroUser/?nomeContato=",
+            {"rota5":"/v1/whatsapp/dados/conversa/:numeroUser/?nomeContato={nomeDoContato}",
                 "description":"Retorna dados de uma conversa do usuário com um contato específico pesquisando pelo número de usuário e nome do contato"
             },
-            {"rota6":"/v1/whatsapp/filtro/conversas/:numUser/?nomeContato=&keyWord=",
+            {"rota6":"/v1/whatsapp/filtro/conversas/:numUser/?nomeContato={nomeDoContato}&keyWord={palavraChave",
                 "description":"Retorna mensagens específicas de um usuário com um contato pesquisando pelo número de usuário, nome do contato e uma palavra chave"
             }
         ]
