@@ -54,40 +54,44 @@ function getDadosUsuario(num) {
 function getDadosContatos(num) {
     let numero = String(num)
 
-    let listaMeusContatos = []
+    let listaMeusContatos = {
+        "contacts":[]
+    }
 
     listaContatos["whats-users"].forEach((user) => {
         if (numero == user.number) {
-            user.contacts.forEach((contacts) => [
-                listaMeusContatos.push(
+            user.contacts.forEach((contacts) => {
+                listaMeusContatos.contacts.push(
                     { "nome": contacts.name, "foto_perfil": contacts.image, "descricao": contacts.description }
                 )
-            ])
+            })
 
         }
     })
 
-    if (listaMeusContatos.length == 0)
+    if (listaMeusContatos.contacts.length == 0)
         return false
     else
         return listaMeusContatos
 }
 
 function getListaUserMessages(num) {
-    let listaMensagens = []
+    let listaMensagens = {
+        "messages":[]
+    }
     let numero = String(num)
 
     listaContatos["whats-users"].forEach((user) => {
         if (numero == user.number) {
             user.contacts.forEach((contato) => {
-                listaMensagens.push(
+                listaMensagens.messages.push(
                     { "nome_contato": contato.name, "menssagens": contato.messages }
                 )
             })
         }
     })
 
-    if (listaMensagens.length == 0)
+    if (listaMensagens.messages.length == 0)
         return false
     else
         return listaMensagens
@@ -126,7 +130,7 @@ function filtrarConversas(numUser, nameContact, keyWord) {
     let nomeContact = String(nameContact)
     let palavraChave = String(keyWord).toUpperCase()
 
-    let listaConvesas = []
+    let listaConvesas = {"conversas":[]}
 
     listaContatos["whats-users"].forEach((user) => {
         if (user.number == numeroUser) {
@@ -134,7 +138,7 @@ function filtrarConversas(numUser, nameContact, keyWord) {
                 if (contacts.name == nomeContact) {
                     contacts.messages.forEach((messages) => {
                         if (messages.content.toUpperCase().substring().includes(palavraChave)) {
-                            listaConvesas.push(
+                            listaConvesas.conversas.push(
                                 { "quem_enviou": messages.sender, "conteudo": messages.content, "hora_envio": messages.time }
                             )
                         }
@@ -144,8 +148,17 @@ function filtrarConversas(numUser, nameContact, keyWord) {
         }
     })
 
-    if (listaConvesas.length == 0)
+    if (listaConvesas.conversas.length == 0)
         return false
     else
         return listaConvesas
+}
+
+module.exports = {
+    getListaUsuarios,
+    getDadosUsuario,
+    getDadosContatos,
+    getListaUserMessages,
+    getDadosConversa,
+    filtrarConversas
 }
