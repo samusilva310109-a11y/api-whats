@@ -130,6 +130,39 @@ app.get("/v1/whatsapp/filtro/conversas/:numUser/", (request, response) => {
     }
 })
 
+app.get("/v1/whatsapp/doc",(resquest, response) => {
+
+    let docAPI = {
+        "api-description":"API para manipular dados do aplicativo Whatsapp",
+        "date":"2026/04/13",
+        "development":"Samuel Silva Moreira Dos Santos",
+        "version":1.0,
+        "endpoints":[
+            {"rota1":"/v1/whatsapp/usuarios",
+             "description":"Retorna a lista de todos os usuário ativos e não ativos do aplicativo"
+            },
+            {"rota2":"/v1/whatsapp/dados/usuario/:numeroUser",
+                "description":"Retorna dados de um usuário pelo seu número de telefone"
+            },
+            {"rota3":"/v1/whatsapp/usuario/dados/contatos/:numUser",
+                "description":"Retorna uma lista de contatos e seus respectivos dados de um usuário pelo número de telefone do usuário"
+            },
+            {"rota4":"/v1/whatsapp/usuario/menssagens/:numUser",
+                "description":"Retorna todas as mensagens de um usuário com os seus contatos pesquisando pelo número de telefone do usário"
+            },
+            {"rota5":"/v1/whatsapp/dados/conversa/:numeroUser/?nomeContato=",
+                "description":"Retorna dados de uma conversa do usuário com um contato específico pesquisando pelo número de usuário e nome do contato"
+            },
+            {"rota6":"/v1/whatsapp/filtro/conversas/:numUser/?nomeContato=&keyWord=",
+                "description":"Retorna mensagens específicas de um usuário com um contato pesquisando pelo número de usuário, nome do contato e uma palavra chave"
+            }
+        ]
+    }
+
+    response.status(200)
+    response.json(docAPI)
+})
+
 app.listen(8080, () => {
     console.log("API aguardando novas requisições...");
 })
